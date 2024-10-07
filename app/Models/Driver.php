@@ -10,15 +10,20 @@ class Driver extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id_document_type',
+        'document_number',
         'name',
         'lastname',
         'phone_number',
-        'document_number',
-        'id_document_type',
+        'email',
         'id_license_type',
+        'license_number',
+        'f_exp_license',
+        'f_ven_license',
         'experiencia',
-        'disponibilidad',
+        'id_status_drive',
     ];
+
 
     public function documentType()
     {
@@ -29,4 +34,13 @@ class Driver extends Model
     {
         return $this->belongsTo(LicenseType::class, 'id_license_type');
     }
+
+    public function statusDrive()
+    {
+        return $this->belongsTo(StatusDriver::class, 'id_status_drive');
+    }
+
+
 }
+
+
