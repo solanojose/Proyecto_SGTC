@@ -43,27 +43,27 @@
                         </div>
                         <div>
                             <label for="documento">Documento</label>
-                            <input type="text" id="documento" name="documento" required>
+                            <input type="text" id="documento" name="document_number" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div>
                             <label for="nombre">Nombre</label>
-                            <input type="text" id="nombre" name="nombre" required>
+                            <input type="text" id="nombre" name="name" required>
                         </div>
                         <div>
                             <label for="apellido">Apellido</label>
-                            <input type="text" id="apellido" name="apellido" required>
+                            <input type="text" id="apellido" name="lastname" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div>
                             <label for="celular">Celular</label>
-                            <input type="tel" id="celular" name="celular" required>
+                            <input type="tel" id="celular" name="phone_number" required>
                         </div>
                         <div>
                             <label for="correo">Correo</label>
-                            <input type="email" id="correo" name="correo" required>
+                            <input type="email" id="correo" name="email" required>
                         </div>
                     </div>
                     <div class="form-row">
@@ -77,17 +77,17 @@
                         </div>
                         <div>
                             <label for="noLicencia">No. Licencia</label>
-                            <input type="text" id="noLicencia" name="noLicencia" required>
+                            <input type="text" id="noLicencia" name="license_number" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div>
                             <label for="fechaExpedicion">Fecha Expedición</label>
-                            <input type="date" id="fechaExpedicion" name="fechaExpedicion" required>
+                            <input type="date" id="fechaExpedicion" name="f_exp_license" required>
                         </div>
                         <div>
                             <label for="fechaVencimiento">Fecha Vencimiento</label>
-                            <input type="date" id="fechaVencimiento" name="fechaVencimiento" required>
+                            <input type="date" id="fechaVencimiento" name="f_ven_license" required>
                         </div>
                     </div>
                     <div class="form-row">
@@ -97,7 +97,7 @@
                         </div>
                         <div>
                             <label for="estado">Estado</label>
-                            <select id="estado" name="estado" required>
+                            <select id="estado" name="id_status_drive" required>
                                 @foreach ($statusDrivers as $status)
                                     <option value="{{ $status->id }}">{{ $status->status }}</option>
                                 @endforeach
@@ -107,7 +107,7 @@
                     <button type="submit">Guardar</button>
                 </form>
                 @if (session('success'))
-                <p style="color: green;">{{ session('success') }}</p>
+                <p style="color: green; text-align: center; font-weight: bold; font-size: 18px;">{{ session('success') }}</p>
             @endif
             </div>
         </main>

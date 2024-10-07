@@ -27,7 +27,7 @@ class DriverController extends Controller
             'name' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'phone_number' => 'required|string|max:20',
-            'email' => 'required',
+            'email' => 'required|string',
             'id_license_type' => 'required|exists:license_types,id',
             'license_number'=>'required|integer', 
             'f_exp_license' => 'required',
