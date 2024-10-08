@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="shortcut icon" href="img/LOGO.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/app.css">
     <title>Registrar Conductor</title>
 </head>
 <body>
@@ -11,7 +12,7 @@
         <header>
             <div class="header-content">
                 <div class="logo-container">
-                    <img src="{{ asset('img/LOGO.png') }}" alt="Hermes Transportadora Logo">
+                    <img src="img/LOGO.png" alt="Hermes Transportadora Logo">
                     <div class="logo-text">
                         <h1>Hermes</h1>
                         <span>Transportadora</span>
@@ -107,8 +108,16 @@
                     <button type="submit">Guardar</button>
                 </form>
                 @if (session('success'))
-                <p style="color: green; text-align: center; font-weight: bold; font-size: 18px;">{{ session('success') }}</p>
-            @endif
+                    <p style="color: green; text-align: center; font-weight: bold; font-size: 18px;">{{ session('success') }}</p>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                            <p style="color: red; text-align: center; font-weight: bold; font-size: 18px;">{{ $error }}</p>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </main>
         <footer>
@@ -123,12 +132,12 @@
                 <div class=".social-icons">
                     <h3>Contactos</h3>
                     <div>
-                        <img src="{{ asset('img/Instagram2.png') }}" alt="Instagram">
-                        <img src="{{ asset('img/Twitter2.png') }}" alt="x">
+                        <img src="../img/Instagram2.png" alt="Instagram">
+                        <img src="../img/Twitter2.png" alt="x">
                     </div>
                     <div>
-                        <img src="{{ asset('img/Whatsapp2.png') }}" alt="WhatsApp">
-                        <img src="{{ asset('img/Facebook2.png') }}" alt="Facebook">
+                        <img src="../img/Whatsapp2.png" alt="WhatsApp">
+                        <img src="../img/Facebook2.png" alt="Facebook">
                     </div>
                 </div>
                 <div class="footer-section horarios">
@@ -143,9 +152,9 @@
             <div class="vigilado">
                 <p>Vigilado y Controlado por</p>
                 <div class="logos">
-                    <img src="{{ asset('img/MINTIC.png') }}" alt="MINTIC" class="logo">
-                    <img src="{{ asset('img/Industria.png') }}" alt="Industria y Comercio" class="logo">
-                    <img src="{{ asset('img/supertransporte.png') }}" alt="VIGIA" class="logo">
+                    <img src="../img/mintic.png" alt="mintic" class="logo">
+                    <img src="../img/Industria.png" alt="Industria y Comercio" class="logo">
+                    <img src="../img/supertransporte.png" alt="supertransporte" class="logo">
                 </div>
             </div>
         </footer>
