@@ -37,6 +37,7 @@
                         <div>
                             <label for="tipoDocumento">Tipo Documento</label>
                             <select id="id_document_type" name="id_document_type" required>
+                                <option value="" disabled selected>Seleccione una opción</option>
                                 @foreach ($documentTypes as $type)
                                     <option value="{{ $type->id }}">{{ $type->name }}</option>
                                 @endforeach
@@ -71,6 +72,7 @@
                         <div>
                             <label for="tipoLicencia">Tipo Licencia</label>
                             <select id="id_license_type" name="id_license_type" required>
+                                <option value="" disabled selected>Seleccione una opción</option>
                                 @foreach ($licenseTypes as $type)
                                     <option value="{{ $type->id }}">{{ $type->name }}</option>
                                 @endforeach
@@ -99,6 +101,7 @@
                         <div>
                             <label for="estado">Estado</label>
                             <select id="estado" name="id_status_drive" required>
+                                <option value="" disabled selected>Seleccione una opción</option>
                                 @foreach ($statusDrivers as $status)
                                     <option value="{{ $status->id }}">{{ $status->status }}</option>
                                 @endforeach
