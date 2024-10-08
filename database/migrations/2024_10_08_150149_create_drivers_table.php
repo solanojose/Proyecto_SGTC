@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('phone_number');
             $table->string('email');
+            $table->string('password'); 
             $table->foreignId('id_license_type')->constrained('license_types')->onDelete('cascade');
             $table->string('license_number');
             $table->date('f_exp_license');

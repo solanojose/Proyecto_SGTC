@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DocumentType;
 use App\Models\Driver;
 use App\Models\LicenseType;
+use App\Models\DocumentType;
 use App\Models\StatusDriver;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DriverController extends Controller
 {
@@ -28,6 +29,7 @@ class DriverController extends Controller
             'lastname' => 'required|string|max:255',
             'phone_number' => 'required|string|max:20',
             'email' => 'required|string|email|unique:drivers,email',
+            'password' => 'required|string|min:8|confirmed',
             'id_license_type' => 'required|exists:license_types,id',
             'license_number' => 'required',
             'f_exp_license' => 'required|date',
@@ -38,10 +40,27 @@ class DriverController extends Controller
             'document_number.unique' => 'El número de documento ya se encuentra registrado',
             'document_number.integer' => 'El número de documento debe contener solo números',
             'email.unique' => 'El correo ya está en uso', 
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres',
+            'password.confirmed' => 'Las contraseñas no coinciden.',
             'f_ven_license.after' => 'La fecha de vencimiento tiene que ser posterior a la de expedición',
         ]);
 
-        Driver::create($request->all());
+        Driver::create([
+            'id_document_type' => $request->id_document_type,
+            'document_number' => $request->document_number,
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'phone_number' => $request->phone_number,
+            'email' => $request->email,
+            'password' => Hash::make($request->password), 
+            'license_number' => $request->license_number,
+            'id_license_type' => $request->id_license_type,
+            'f_exp_license' => $request->f_exp_license,
+            'f_ven_license' => $request->f_ven_license,
+            'experiencia' => $request->experiencia,
+            'id_status_drive' => $request->id_status_drive,
+        ]);
+
         return redirect()->route('drivers.create')->with('success', 'Conductor registrado con éxito.');
     }
 

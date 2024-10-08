@@ -93,6 +93,7 @@ form {
     gap: 15px;
 }
 label {
+    color: #726b68;
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
@@ -104,6 +105,13 @@ input, select {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+input::placeholder {
+    font-family: 'Arial', sans-serif; 
+    color: #888; 
+    font-size: 14px; 
+}
+
 button {
     background-color: #54c5f8;
     color: white;

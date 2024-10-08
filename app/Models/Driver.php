@@ -16,6 +16,7 @@ class Driver extends Model
         'lastname',
         'phone_number',
         'email',
+        'password',
         'id_license_type',
         'license_number',
         'f_exp_license',
