@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/LOGO.png" type="image/x-icon">
-    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/saveDriver.css">
     <title>Registrar Conductor</title>
 </head>
 <body>
@@ -12,7 +12,7 @@
         <header>
             <div class="header-content">
                 <div class="logo-container">
-                    <img src="img/LOGO.png" alt="Hermes Transportadora Logo">
+                    <img src="../img/LOGO.png" alt="Hermes Transportadora Logo">
                     <div class="logo-text">
                         <h1>Hermes</h1>
                         <span>Transportadora</span>

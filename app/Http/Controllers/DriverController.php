@@ -61,6 +61,11 @@ class DriverController extends Controller
             'id_status_drive' => $request->id_status_drive,
         ]);
 
+        // User::create([
+        //     'email' => $request->email,
+        //     'password' => Hash::make($request->password),
+        // ]);
+
         return redirect()->route('drivers.create')->with('success', 'Conductor registrado con éxito.');
     }
 
