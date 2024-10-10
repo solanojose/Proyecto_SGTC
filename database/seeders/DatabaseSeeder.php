@@ -22,9 +22,13 @@ class DatabaseSeeder extends Seeder
         // ]);
 
 
-        $this->call(DocumentTypesSeeder::class);
-        $this->call(LicenseTypesSeeder::class);
-        $this->call(StatusDriversSeeder::class);
-        $this->call(RolesSeeder::class);
+        $this->call([
+
+            DocumentTypesSeeder::class,
+            LicenseTypesSeeder::class,
+            StatusDriversSeeder::class,
+            RolesSeeder::class,
+            UserSeeder::class,
+        ]);
     }
 }

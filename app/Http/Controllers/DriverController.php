@@ -20,7 +20,7 @@ class DriverController extends Controller
         $licenseTypes = LicenseType::all();
         $statusDrivers = StatusDriver::all();
 
-        return view('saveDriver', compact('documentTypes', 'licenseTypes', 'statusDrivers'));
+        return view('Admin.registerDriver', compact('documentTypes', 'licenseTypes', 'statusDrivers'));
     }
 
     public function store(Request $request)
@@ -50,29 +50,15 @@ class DriverController extends Controller
             'f_ven_license.after' => 'La fecha de vencimiento tiene que ser posterior a la de expedición',
         ]);
 
-       $user= User::create([
+        $user= User::create([
             'email' => $request->email,
             'name' => $request->name,
             'lastname' => $request->lastname,
             'password' => Hash::make($request->password),
+
         ]);
 
-      //  $user=roles()->attach(3);
-
-
-        // Driver::create([
-        
-        //     'id_document_type' => $request->id_document_type,
-        //     'document_number' => $request->document_number,
-        //     'phone_number' => $request->phone_number,
-        //     'license_number' => $request->license_number,
-        //     'id_license_type' => $request->id_license_type,
-        //     'f_exp_license' => $request->f_exp_license,
-        //     'f_ven_license' => $request->f_ven_license,
-        //     'experiencia' => $request->experiencia,
-        //     'id_status_drive' => $request->id_status_drive,
-        // ]);
-
+        $user->roles()->attach(3);
 
         $driver= new Driver();
         $driver->user_id=$user->id;
@@ -88,7 +74,7 @@ class DriverController extends Controller
         $driver->save();
 
 
-     
+    
 
         return redirect()->route('drivers.create')->with('success', 'Conductor registrado con éxito.');
     }
