@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             StatusDriversSeeder::class,
             RolesSeeder::class,
             UserSeeder::class,
+            DepartamentsSeeder::class
         ]);
     }
 }
