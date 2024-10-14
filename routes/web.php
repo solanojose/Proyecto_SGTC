@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DriverController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 
 Route::get('/', function () {

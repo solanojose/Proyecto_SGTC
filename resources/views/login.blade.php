@@ -16,7 +16,8 @@
                 <p class="subtitle">Transportadora</p>
             </div>
         </div>
-        <form>
+        <form  method="POST">
+            @csrf
             <div class="input-field">
                 <img src="../img/usuario.png" alt="Icono Usuario">
                 <input type="email" placeholder="Correo electronico" required>

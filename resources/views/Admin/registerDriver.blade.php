@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../css/registerDriver.css">
     <title>Registrar Conductor</title>
 </head>
-<body>
     <body>
         <header>
             <div class="header-content">
@@ -106,7 +105,7 @@
                     <div class="form-row">
                         <div>
                             <label for="experiencia">Experiencia</label>
-                            <input type="text" id="experiencia" name="experiencia" value="{{ old('experiencia') }}" placeholder="Ingresa tu experiencia en años" required>
+                            <input type="number" id="experiencia" name="experiencia" value="{{ old('experiencia') }}" min="0" placeholder="Ingresa tu experiencia en años" required>
                         </div>
                         <div>
                             <label for="estado">Estado</label>
@@ -137,6 +136,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Algunas Ciudades</h3>
+                    <p class="separador"></p>
                     <div class="ciudad"><span>Bogota:</span> Calle 85 # 15-50, Barrio Chico Norte</div>
                     <div class="ciudad"><span>Medellin:</span> Carrera 33 # 40-30, Barrio Cabecera del Llano</div>
                     <div class="ciudad"><span>Barranquilla:</span> Calle 72 # 45-42, Barrio Alto Prado</div>
@@ -144,6 +144,7 @@
                 </div>
                 <div class=".social-icons">
                     <h3>Contactos</h3>
+                    <p class="separador"></p>
                     <div>
                         <img src="../img/Instagram2.png" alt="Instagram">
                         <img src="../img/Twitter2.png" alt="x">
@@ -155,8 +156,10 @@
                 </div>
                 <div class="footer-section horarios">
                     <h3>Horarios</h3>
+                    <p class="separador"></p>
                     <p><span class="blue-text">LUNES - VIERNES</span></p>
                     <p>08:00 AM - 06:00 PM</p>
+                    <p class="separador"></p>
                     <p><span class="blue-text">SÁBADOS - FESTIVOS</span></p>
                     <p>09:00 AM - 01:00 PM</p>
                 </div>

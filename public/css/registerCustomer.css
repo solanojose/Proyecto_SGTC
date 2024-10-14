@@ -160,14 +160,17 @@ footer {
 }
 .footer-section h3 {
     color: white;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 .ciudad {
     margin-bottom: 15px;
 }
+
 .ciudad span {
     color: #00BFFF;
 }
+
+
 img {
     margin-right: 20px;
     margin-bottom: 10px;
@@ -191,14 +194,15 @@ img {
     margin: 0 5px;
 }
 
+
+
 .horarios {
     text-align: right;
-
 }
+
 
 .blue-text {
     color: #00BFFF;
-
 }
 
 .vigilado {
@@ -214,4 +218,7 @@ img {
     margin: 0 100px;
 }
 
+.separador {
+    margin: 15px 0; 
+}
 

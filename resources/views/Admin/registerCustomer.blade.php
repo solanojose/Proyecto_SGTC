@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../css/registerCustomer.css">
     <title>Registrar Cliente</title>
 </head>
-<body>
     <body>
         <header>
             <div class="header-content">
@@ -93,8 +92,32 @@
                             <select id="id_city" name="id_city" value="{{ old('id_city') }}"  required>
                                 <option value="" disabled selected>Seleccione una opción</option>
                             </select>
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script>
+                                $(document).ready(function() {
+                                    $('#id_departament').change(function() {
+                                        var departamentId = $(this).val();
+                                        if (departamentId) {
+                                            $.ajax({
+                                                url: '/cities/' + departamentId,
+                                                type: 'GET',
+                                                dataType: 'json',
+                                                success: function(data) {
+                                                    $('#id_city').empty();
+                                                    // $('#id_city').append('<option value="" disabled selected>Seleccione una opción</option>');
+                                                    $.each(data, function(key, city) {
+                                                        $('#id_city').append('<option value="' + city.id + '">' + city.name + '</option>');
+                                                    });
+                                                }
+                                            });
+                                        } else {
+                                            $('#id_city').empty();
+                                            // $('#id_city').append('<option value="" disabled selected>Seleccione una opción</option>');
+                                        }
+                                    });
+                                });
+                            </script>
                         </div>
-                    
                     </div>
                     <div class="form-row">
                         <div>
@@ -125,6 +148,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Algunas Ciudades</h3>
+                    <p class="separador"></p>
                     <div class="ciudad"><span>Bogota:</span> Calle 85 # 15-50, Barrio Chico Norte</div>
                     <div class="ciudad"><span>Medellin:</span> Carrera 33 # 40-30, Barrio Cabecera del Llano</div>
                     <div class="ciudad"><span>Barranquilla:</span> Calle 72 # 45-42, Barrio Alto Prado</div>
@@ -132,6 +156,7 @@
                 </div>
                 <div class=".social-icons">
                     <h3>Contactos</h3>
+                    <p class="separador"></p>
                     <div>
                         <img src="../img/Instagram2.png" alt="Instagram">
                         <img src="../img/Twitter2.png" alt="x">
@@ -143,12 +168,14 @@
                 </div>
                 <div class="footer-section horarios">
                     <h3>Horarios</h3>
+                    <p class="separador"></p>
                     <p><span class="blue-text">LUNES - VIERNES</span></p>
                     <p>08:00 AM - 06:00 PM</p>
+                    <p class="separador"></p>
                     <p><span class="blue-text">SÁBADOS - FESTIVOS</span></p>
                     <p>09:00 AM - 01:00 PM</p>
                 </div>
-                
+                    
             </div>
             <div class="vigilado">
                 <p>Vigilado y Controlado por</p>
@@ -159,32 +186,5 @@
                 </div>
             </div>
         </footer>
-
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('#id_departament').change(function() {
-                    var departamentId = $(this).val();
-                    if (departamentId) {
-                        $.ajax({
-                            url: '/cities/' + departamentId,
-                            type: 'GET',
-                            dataType: 'json',
-                            success: function(data) {
-                                $('#id_city').empty();
-                                // $('#id_city').append('<option value="" disabled selected>Seleccione una opción</option>');
-                                $.each(data, function(key, city) {
-                                    $('#id_city').append('<option value="' + city.id + '">' + city.name + '</option>');
-                                });
-                            }
-                        });
-                    } else {
-                        $('#id_city').empty();
-                        // $('#id_city').append('<option value="" disabled selected>Seleccione una opción</option>');
-                    }
-                });
-            });
-        </script>
-
     </body>
 </html>

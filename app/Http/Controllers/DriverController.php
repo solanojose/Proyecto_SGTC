@@ -39,7 +39,7 @@ class DriverController extends Controller
             'license_number' => 'required',
             'f_exp_license' => 'required|date',
             'f_ven_license' => 'required|date|after:f_exp_license', 
-            'experiencia' => 'required|string|max:255',
+            'experiencia' => 'required|integer|min:0',
             'id_status_drive' => 'required|exists:status_drivers,id',
         ], 
 
@@ -71,7 +71,8 @@ class DriverController extends Controller
         $driver->license_number=$request->license_number;
         $driver->f_exp_license=$request->f_exp_license;
         $driver->f_ven_license=$request->f_ven_license;
-        $driver->experiencia= $request->experiencia;
+        $experienciaValue = $request->experiencia;
+        $driver->experiencia = $experienciaValue . ' ' . ($experienciaValue == 1 ? 'año' : 'años');
         $driver->id_status_drive =$request->id_status_drive;
         $driver->save();
 
