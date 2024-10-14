@@ -41,7 +41,9 @@ class DriverController extends Controller
             'f_ven_license' => 'required|date|after:f_exp_license', 
             'experiencia' => 'required|string|max:255',
             'id_status_drive' => 'required|exists:status_drivers,id',
-        ], [
+        ], 
+
+        [
             'document_number.unique' => 'El número de documento ya se encuentra registrado',
             'document_number.integer' => 'El número de documento debe contener solo números',
             'email.unique' => 'El correo ya está en uso', 
@@ -73,10 +75,7 @@ class DriverController extends Controller
         $driver->id_status_drive =$request->id_status_drive;
         $driver->save();
 
-
-    
-
-        return redirect()->route('drivers.create')->with('success', 'Conductor registrado con éxito.');
+        return redirect()->route('drivers.create')->with('success', 'Conductor registrado con éxito');
     }
 
 

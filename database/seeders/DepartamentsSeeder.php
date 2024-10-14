@@ -16,5 +16,9 @@ class DepartamentsSeeder extends Seeder
         Departament::create([
             'name' => 'Cesar'
         ]);
+
+        Departament::create([
+            'name' => 'La Guajira'
+        ]);
     }
 }

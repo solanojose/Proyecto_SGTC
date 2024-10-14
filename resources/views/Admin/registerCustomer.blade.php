@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/LOGO.png" type="image/x-icon">
-    <link rel="stylesheet" href="../css/registerDriver.css">
-    <title>Registrar Conductor</title>
+    <link rel="stylesheet" href="../css/registerCustomer.css">
+    <title>Registrar Cliente</title>
 </head>
 <body>
     <body>
@@ -30,8 +30,8 @@
         </header>
         <main>
             <div class="form-container">
-                <h1>Registro de Conductores</h1>
-                <form action="{{ route('drivers.store') }}" method="POST">
+                <h1>Registro de Clientes</h1>
+                <form action="{{ route('customers.store') }}" method="POST">
                     @csrf
                     <div class="form-row">
                         <div>
@@ -80,42 +80,30 @@
                     </div>
                     <div class="form-row">
                         <div>
-                            <label for="tipoLicencia">Tipo Licencia</label>
-                            <select id="id_license_type" name="id_license_type" value="{{ old('id_license_type') }}"  required>
+                            <label for="departamento">Departamento</label>
+                            <select id="id_departament" name="id_departament" value="{{ old('id_departament') }}"  required>
                                 <option value="" disabled selected>Seleccione una opción</option>
-                                @foreach ($licenseTypes as $type)
-                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                @foreach ($departaments as $departament)
+                                    <option value="{{ $departament->id }}">{{ $departament->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div>
-                            <label for="noLicencia">No. Licencia</label>
-                            <input type="text" id="noLicencia" name="license_number" value="{{ old('license_number') }}" placeholder="Ingresa tu N° de licencia" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div>
-                            <label for="fechaExpedicion">Fecha Expedición</label>
-                            <input type="date" id="fechaExpedicion" name="f_exp_license" value="{{ old('f_exp_license') }}" required>
-                        </div>
-                        <div>
-                            <label for="fechaVencimiento">Fecha Vencimiento</label>
-                            <input type="date" id="fechaVencimiento" name="f_ven_license" value="{{ old('f_ven_license') }}" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div>
-                            <label for="experiencia">Experiencia</label>
-                            <input type="text" id="experiencia" name="experiencia" value="{{ old('experiencia') }}" placeholder="Ingresa tu experiencia en años" required>
-                        </div>
-                        <div>
-                            <label for="estado">Estado</label>
-                            <select id="estado" name="id_status_drive" value="{{ old('id_status_drive') }}" required>
+                            <label for="ciudad">Ciudad</label>
+                            <select id="id_city" name="id_city" value="{{ old('id_city') }}"  required>
                                 <option value="" disabled selected>Seleccione una opción</option>
-                                @foreach ($statusDrivers as $status)
-                                    <option value="{{ $status->id }}">{{ $status->status }}</option>
-                                @endforeach
                             </select>
+                        </div>
+                    
+                    </div>
+                    <div class="form-row">
+                        <div>
+                            <label for="experiencia">Barrio</label>
+                            <input type="text" id="address" name="address" value="{{ old('address') }}" placeholder="Ingresa el nombre de tu barrio" required>
+                        </div>
+                        <div>
+                            <label for="experiencia">Direccion</label>
+                            <input type="text" id="neighborhood" name="neighborhood" value="{{ old('neighborhood') }}" placeholder="Ingresa tu dirección" required>
                         </div>
                     </div>
                     <button type="submit">Guardar</button>
@@ -171,5 +159,32 @@
                 </div>
             </div>
         </footer>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#id_departament').change(function() {
+                    var departamentId = $(this).val();
+                    if (departamentId) {
+                        $.ajax({
+                            url: '/cities/' + departamentId,
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function(data) {
+                                $('#id_city').empty();
+                                // $('#id_city').append('<option value="" disabled selected>Seleccione una opción</option>');
+                                $.each(data, function(key, city) {
+                                    $('#id_city').append('<option value="' + city.id + '">' + city.name + '</option>');
+                                });
+                            }
+                        });
+                    } else {
+                        $('#id_city').empty();
+                        // $('#id_city').append('<option value="" disabled selected>Seleccione una opción</option>');
+                    }
+                });
+            });
+        </script>
+
     </body>
 </html>
