@@ -76,4 +76,9 @@ class CustomerController extends Controller
         return redirect()->route('customers.create')->with('success', 'Cliente registrado con éxito');
     
     }
+
+    public function profile()
+    {
+        return view('Customer.viewCustomer');
+    }
 }

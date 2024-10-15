@@ -3,26 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/LOGO.png" type="image/x-icon">
-    <link rel="stylesheet" href="../css/registerCustomer.css">
+    <link rel="shortcut icon" href={{ asset('img/LOGO.png') }} type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('css/registerDriver.css') }}">
     <title>Registrar Cliente</title>
 </head>
     <body>
         <header>
             <div class="header-content">
                 <div class="logo-container">
-                    <img src="../img/LOGO.png" alt="Hermes Transportadora Logo">
+                    <img src={{ asset('img/LOGO.png') }} alt="Hermes Transportadora Logo">
                     <div class="logo-text">
                         <h1>Hermes</h1>
                         <span>Transportadora</span>
                     </div>
                 </div>
                 <nav>
-                    <ul>
-                        <li><a href="#">¿Quienes Somos?</a></li>
-                        <li><a href="#">Servicios</a></li>
-                        <li><a href="#">Registrate</a></li>
-                        <li><a href="#">Ingresar</a></li>
+                    <ul style="display: flex; align-items: center; list-style-type: none; padding: 0;">
+                        <li><a href="{{ route('customers.create') }}">Clientes</a></li>
+                        <li><a href="{{ route('drivers.create') }}">Conductores</a></li>
+                        <li style="margin-right: 30px;" ><a href="{{ route('vehicles.create') }}">Vehiculos</a></li>
+                        <li style="margin-left: auto;">
+                            <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
+                                @csrf
+                                <button type="submit"
+                                    style="background:#5085ca; border:none; color:white; cursor:pointer; padding: 10px 15px; border-radius: 5px;">Cerrar Sesión</button>
+                            </form>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -158,12 +164,12 @@
                     <h3>Contactos</h3>
                     <p class="separador"></p>
                     <div>
-                        <img src="../img/Instagram2.png" alt="Instagram">
-                        <img src="../img/Twitter2.png" alt="x">
+                        <img src={{ asset('img/instagram2.png') }} alt="Instagram">
+                        <img src={{ asset('img/twitter2.png') }} alt="x">
                     </div>
                     <div>
-                        <img src="../img/Whatsapp2.png" alt="WhatsApp">
-                        <img src="../img/Facebook2.png" alt="Facebook">
+                        <img src={{ asset('img/whatsapp2.png') }} alt="WhatsApp">
+                        <img src={{ asset('img/facebook2.png') }} alt="Facebook">
                     </div>
                 </div>
                 <div class="footer-section horarios">
@@ -180,9 +186,9 @@
             <div class="vigilado">
                 <p>Vigilado y Controlado por</p>
                 <div class="logos">
-                    <img src="../img/mintic.png" alt="mintic" class="logo">
-                    <img src="../img/Industria.png" alt="Industria y Comercio" class="logo">
-                    <img src="../img/supertransporte.png" alt="supertransporte" class="logo">
+                    <img src={{ asset('img/mintic.png') }} alt="mintic" class="logo">
+                    <img src={{ asset('img/industria.png') }} alt="Industria y Comercio" class="logo">
+                    <img src={{ asset('img/supertransporte.png') }} alt="supertransporte" class="logo">
                 </div>
             </div>
         </footer>

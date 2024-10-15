@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             DepartamentsSeeder::class,
             CitiesSeeder::class,
+            VehicleTypesSeeder::class,
+            StatusVehiclesSeeder::class,
         ]);
     }
 }
