@@ -47,7 +47,7 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>N° de Documento</th>
+                            <th>Documento</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Email</th>
