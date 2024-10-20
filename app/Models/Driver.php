@@ -23,6 +23,10 @@ class Driver extends Model
     ];
 
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
     public function documentType()
     {
         return $this->belongsTo(DocumentType::class, 'id_document_type');
@@ -33,7 +37,7 @@ class Driver extends Model
         return $this->belongsTo(LicenseType::class, 'id_license_type');
     }
 
-    public function statusDrive()
+    public function statusDriver()
     {
         return $this->belongsTo(StatusDriver::class, 'id_status_drive');
     }

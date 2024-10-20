@@ -25,7 +25,7 @@ class LoginController extends Controller
             $user = Auth::user();
 
             if ($user->hasRole('Administrador')) {
-                return redirect()->route('drivers.create');
+                return redirect()->route('drivers.index');
             }elseif ($user->hasRole('Cliente')) {
                 return redirect()->route('customers.profile');
             }

@@ -81,5 +81,107 @@ class DriverController extends Controller
         return redirect()->route('drivers.create')->with('success', 'Conductor registrado con éxito');
     }
 
-    
+
+    public function index()
+    {
+
+        $drivers = Driver::with('user', 'documentType', 'licenseType', 'statusDriver')->get();
+
+        return view('Admin.showDrivers', compact('drivers'));
+    }
+
+    public function driverId($id)
+    {
+
+        $driver = Driver::findOrFail($id);
+
+        $documentTypes = DocumentType::all();
+        $licenseTypes = LicenseType::all();
+        $statusDrivers = StatusDriver::all();
+
+        return view('Admin.editDriver', compact('driver', 'documentTypes', 'licenseTypes', 'statusDrivers'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $driver = Driver::findOrFail($id);
+
+        $request->validate(
+            [
+                'name' => 'required|string|max:255',
+                'lastname' => 'required|string|max:255',
+                'email' => 'required|email|max:255',
+                'document_number' => 'required|string|max:50',
+                'phone_number' => 'required|string|max:15',
+                'id_document_type' => 'required|exists:document_types,id',
+                'id_license_type' => 'required|exists:license_types,id',
+                'license_number' => 'required|string|max:50',
+                'f_exp_license' => 'required|date',
+                'f_ven_license' => 'required|date',
+                'experiencia' => 'nullable|string|max:255',
+                'id_status_drive' => 'required|exists:status_drivers,id',
+            ],
+
+            [
+                'document_number.unique' => 'El número de documento ya se encuentra registrado',
+                'document_number.integer' => 'El número de documento debe contener solo números',
+                'email.unique' => 'El correo ya está en uso',
+                'f_ven_license.after' => 'La fecha de vencimiento tiene que ser posterior a la de expedición',
+            ]
+        );
+
+        $driver->user->name = $request->name;
+        $driver->user->lastname = $request->lastname;
+        $driver->user->email = $request->email;
+        $driver->document_number = $request->document_number;
+        $driver->phone_number = $request->phone_number;
+        $driver->id_document_type = $request->id_document_type;
+        $driver->id_license_type = $request->id_license_type;
+        $driver->license_number = $request->license_number;
+        $driver->f_exp_license = $request->f_exp_license;
+        $driver->f_ven_license = $request->f_ven_license;
+        $driver->experiencia = $request->experiencia;
+        $driver->id_status_drive = $request->id_status_drive;
+
+
+        $driver->user->save();
+        $driver->save();
+
+        return redirect()->route('drivers.index')->with('success', 'Conductor actualizado correctamente.');
+    }
+
+
+    public function destroy($id)
+    {
+
+        $driver = Driver::findOrFail($id);
+        $user = $driver->user;
+        $driver->delete();
+
+        if ($user) {
+
+            $user->roles()->detach();
+            $user->delete();
+        }
+
+        return redirect()->route('drivers.index')->with('success', 'Conductor eliminado exitosamente.');
+    }
+
+
+
+
+    // public function destroy($id)
+    // {
+    //     $driver = Driver::findOrFail($id);
+
+    //     $driver->delete();
+
+
+    //     if ($driver->user) {
+    //         $driver->user->delete();
+    //     }
+
+
+    //     return redirect()->route('drivers.index')->with('success', 'Conductor eliminado exitosamente.');
+    // }
 }

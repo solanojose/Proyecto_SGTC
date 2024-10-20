@@ -14,11 +14,11 @@ class StatusDriversSeeder extends Seeder
     public function run(): void
     {
         StatusDriver::create([
-            "status"=> "Disponible",
+            "name"=> "Disponible",
         ]);
 
         StatusDriver::create([
-            "status"=> "Ocupado",
+            "name"=> "Ocupado",
         ]);
     }
 }

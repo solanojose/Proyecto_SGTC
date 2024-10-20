@@ -20,13 +20,12 @@
                 <nav>
                     <ul style="display: flex; align-items: center; list-style-type: none; padding: 0;">
                         <li><a href="{{ route('customers.create') }}">Clientes</a></li>
-                        <li><a href="{{ route('drivers.create') }}">Conductores</a></li>
+                        <li><a href="{{ route('drivers.index') }}">Conductores</a></li>
                         <li style="margin-right: 30px;" ><a href="{{ route('vehicles.create') }}">Vehiculos</a></li>
                         <li style="margin-left: auto;">
-                            <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
+                            <form action="{{ route('logout') }}" method="POST" style="margin: 0;" onsubmit="return confirm('¿Estás seguro de que quieres cerrar sesión?');">
                                 @csrf
-                                <button type="submit"
-                                    style="background:#5085ca; border:none; color:white; cursor:pointer; padding: 10px 15px; border-radius: 5px;">Cerrar Sesión</button>
+                                <button type="submit" style="background:#5085ca; border:none; color:white; cursor:pointer; padding: 10px 15px; border-radius: 5px;">Cerrar Sesión</button>
                             </form>
                         </li>
                     </ul>
