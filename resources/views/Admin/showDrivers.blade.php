@@ -38,6 +38,10 @@
         </div>
     </header>
     <main>
+        {{-- <form action="{{ route('drivers.search') }}" method="GET" class="search-form">
+            <input type="text" name="search" placeholder="Buscar conductor..." value="{{ request('search') }}">
+            <button type="submit">Buscar</button>
+        </form> --}}
         <div class="container">
             <h1>Lista de Conductores</h1>
             @if ($drivers->isEmpty())

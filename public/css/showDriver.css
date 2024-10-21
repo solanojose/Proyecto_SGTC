@@ -322,3 +322,44 @@ button {
 .btn-add:hover {
     background-color: #45a049;
 }
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 500px;
+}
+
+.search-form input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.search-form input:focus {
+    border-color: #54c5f8;
+    outline: none;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    background-color: #54c5f8;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.search-form button:hover {
+    background-color: #3aa3d9;
+    transform: scale(1.05);
+}

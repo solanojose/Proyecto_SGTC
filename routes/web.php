@@ -18,6 +18,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 // ADMIN {
 
 // CONDUCTOR
+// Route::get('/drivers/search', [DriverController::class, 'search'])->name('drivers.search');
 Route::get('/drivers', [DriverController::class, 'index'])->name('drivers.index');
 Route::get('/drivers/{id}/edit', [DriverController::class, 'driverId'])->name('drivers.edit');
 Route::put('/drivers/{id}', [DriverController::class, 'update'])->name('drivers.update'); 
@@ -32,7 +33,7 @@ Route::put('/customers/{id}', [CustomerController::class,'update'])->name('custo
 Route::delete('/customers/{id}', [CustomerController::class,'destroy'])->name('customers.destroy');
 Route::get('/customers/create', [CustomerController::class, 'create'])->name('customers.create');
 Route::post('/customers', [CustomerController::class, 'store'])->name('customers.store');
-// VEHICULO   
+// VEHICULO  {
 Route::get('/vehicles/create', [VehicleController::class, 'create'])->name('vehicles.create');
 Route::post('/vehicles', [VehicleController::class, 'store'])->name('vehicles.store');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

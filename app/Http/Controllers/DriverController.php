@@ -172,4 +172,21 @@ class DriverController extends Controller
     {
         return view('Driver.viewDriver');
     }
+
+
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('search');
+
+        $drivers = Driver::with('user')
+            ->whereHas('user', function ($query) use ($searchTerm) {
+                $query->where('name', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('lastname', 'LIKE', "%{$searchTerm}%");
+            })
+            ->orWhere('document_number', 'LIKE', "%{$searchTerm}%")
+            ->get();
+
+        return view('Admin.showDrivers', compact('drivers'));
+    }
 }
