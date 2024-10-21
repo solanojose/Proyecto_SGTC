@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href={{ asset('img/LOGO.png') }} type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/registerDriver.css') }}">
-    <title>Actualizar Conductor</title>
+    <title>Actualizar Cliente</title>
 </head>
 <body>
     <header>
@@ -34,8 +34,8 @@
     </header>
     <main>
         <div class="form-container">
-            <h1>Actualizar Conductor</h1>
-            <form action="{{ route('drivers.update', $driver->id) }}" method="POST">
+            <h1>Actualizar Cliente</h1>
+            <form action="{{ route('customers.update', $customer->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="form-row">
@@ -43,7 +43,7 @@
                         <label for="tipoDocumento">Tipo Documento</label>
                         <select id="id_document_type" name="id_document_type" required>
                             @foreach($documentTypes as $documentType)
-                                <option value="{{ $documentType->id }}" {{ $documentType->id == $driver->id_document_type ? 'selected' : '' }}>
+                                <option value="{{ $documentType->id }}" {{ $documentType->id == $customer->id_document_type ? 'selected' : '' }}>
                                     {{ $documentType->name }}
                                 </option>
                             @endforeach
@@ -51,69 +51,84 @@
                     </div>
                     <div>
                         <label for="documento">Documento</label>
-                        <input type="text" id="documento" name="document_number" value="{{ $driver->document_number }}" required>
+                        <input type="text" id="documento" name="document_number" value="{{ $customer->document_number }}" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div>
                         <label for="nombre">Nombre</label>
-                        <input type="text" id="nombre" name="name" value="{{ $driver->user->name }}" required>
+                        <input type="text" id="nombre" name="name" value="{{ $customer->user->name }}" required>
                     </div>
                     <div>
                         <label for="apellido">Apellido</label>
-                        <input type="text" id="apellido" name="lastname" value="{{ $driver->user->lastname }}" required>
+                        <input type="text" id="apellido" name="lastname" value="{{ $customer->user->lastname }}" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div>
                         <label for="celular">Celular</label>
-                        <input type="tel" id="celular" name="phone_number" value="{{ $driver->phone_number }}" required>
+                        <input type="tel" id="celular" name="phone_number" value="{{ $customer->phone_number }}" required>
                     </div>
                     <div>
                         <label for="correo">Correo</label>
-                        <input type="email" id="correo" name="email" value="{{ $driver->user->email }}" required>
+                        <input type="email" id="correo" name="email" value="{{ $customer->user->email }}" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div>
-                        <label for="tipoLicencia">Tipo Licencia</label>
-                        <select id="id_license_type" name="id_license_type" required>
-                            @foreach($licenseTypes as $licenseType)
-                                <option value="{{ $licenseType->id }}" {{ $licenseType->id == $driver->id_license_type ? 'selected' : '' }}>
-                                    {{ $licenseType->name }}
+                        <label for="departamento">Departamento</label>
+                        <select id="id_departament" name="id_departament" required>
+                            @foreach($departaments as $departament)
+                                <option value="{{ $departament->id }}" {{ $departament->id == $customer->id_departament ? 'selected' : '' }}>
+                                    {{ $departament->name }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
                     <div>
-                        <label for="noLicencia">No. Licencia</label>
-                        <input type="text" id="noLicencia" name="license_number" value="{{ $driver->license_number }}" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div>
-                        <label for="fechaExpedicion">Fecha Expedición</label>
-                        <input type="date" id="fechaExpedicion" name="f_exp_license" value="{{ $driver->f_exp_license }}" required>
-                    </div>
-                    <div>
-                        <label for="fechaVencimiento">Fecha Vencimiento</label>
-                        <input type="date" id="fechaVencimiento" name="f_ven_license" value="{{ $driver->f_ven_license }}" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div>
-                        <label for="experiencia">Experiencia</label>
-                        <input type="number" id="experiencia" name="experiencia" value="{{ $driver->experiencia }}" min="0" required>
-                    </div>
-                    <div>
-                        <label for="estado">Estado</label>
-                        <select id="estado" name="id_status_drive" required>
-                            @foreach($statusDrivers as $statusDriver)
-                                <option value="{{ $statusDriver->id }}" {{ $statusDriver->id == $driver->id_status_drive ? 'selected' : '' }}>
-                                    {{ $statusDriver->name }}
+                        <label for="ciudad">Ciudad</label>
+                        <select id="id_city" name="id_city" required>
+                            @foreach($cities as $city)
+                                <option value="{{ $city->id }}" {{ $city->id == $customer->id_city ? 'selected' : '' }}>
+                                    {{ $city->name }}
                                 </option>
                             @endforeach
                         </select>
+                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script>
+                                $(document).ready(function() {
+                                    $('#id_departament').change(function() {
+                                        var departamentId = $(this).val();
+                                        if (departamentId) {
+                                            $.ajax({
+                                                url: '/cities/' + departamentId,
+                                                type: 'GET',
+                                                dataType: 'json',
+                                                success: function(data) {
+                                                    $('#id_city').empty();
+                                                    // $('#id_city').append('<option value="" disabled selected>Seleccione una opción</option>');
+                                                    $.each(data, function(key, city) {
+                                                        $('#id_city').append('<option value="' + city.id + '">' + city.name + '</option>');
+                                                    });
+                                                }
+                                            });
+                                        } else {
+                                            $('#id_city').empty();
+                                            // $('#id_city').append('<option value="" disabled selected>Seleccione una opción</option>');
+                                        }
+                                    });
+                                });
+                            </script>
+                    </div>
+                </div>
+                <div class="form-row">     
+                    <div>
+                        <label for="barrio">Barrio</label>
+                        <input type="text" id="address" name="address" value="{{ $customer->address }}"  required>
+                    </div>
+                    <div>
+                        <label for="direccion">Direccion</label>
+                        <input type="text" id="neighborhood" name="neighborhood" value="{{ $customer->neighborhood }}"  required>
                     </div>
                 </div>
                 <button type="submit">Actualizar</button>

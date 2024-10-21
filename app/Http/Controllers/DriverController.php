@@ -147,7 +147,7 @@ class DriverController extends Controller
         $driver->user->save();
         $driver->save();
 
-        return redirect()->route('drivers.index')->with('success', 'Conductor actualizado correctamente.');
+        return redirect()->route('drivers.edit', $id)->with('success', 'Conductor actualizado correctamente.');
     }
 
 
@@ -168,20 +168,8 @@ class DriverController extends Controller
     }
 
 
-
-
-    // public function destroy($id)
-    // {
-    //     $driver = Driver::findOrFail($id);
-
-    //     $driver->delete();
-
-
-    //     if ($driver->user) {
-    //         $driver->user->delete();
-    //     }
-
-
-    //     return redirect()->route('drivers.index')->with('success', 'Conductor eliminado exitosamente.');
-    // }
+    public function profile()
+    {
+        return view('Driver.viewDriver');
+    }
 }

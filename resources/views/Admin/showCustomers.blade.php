@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href={{ asset('img/LOGO.png') }} type="image/x-icon">
-    <link rel="stylesheet" href="{{ asset('css/showDriver.css') }}">
-    <title>Conductores</title>
+    <link rel="stylesheet" href="{{ asset('css/showCustomer.css') }}">
+    <title>Clintes</title>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
             <nav>
                 <ul style="display: flex; align-items: center; list-style-type: none; padding: 0;">
                     <li><a href="{{ route('customers.index') }}">Clientes</a></li>
-                    <li><a href="{{ route('drivers.create') }}">Conductores</a></li>
+                    <li><a href="{{ route('drivers.index') }}">Conductores</a></li>
                     <li style="margin-right: 30px;"><a href="{{ route('vehicles.create') }}">Vehiculos</a></li>
                     <li style="margin-left: auto;">
                         <form action="{{ route('logout') }}" method="POST" style="margin: 0;"
@@ -39,12 +39,12 @@
     </header>
     <main>
         <div class="container">
-            <h1>Lista de Conductores</h1>
-            @if ($drivers->isEmpty())
-                <h1>No hay conductores registrados</h1>
+            <h1>Lista de Clientes</h1>
+            @if ($customers->isEmpty())
+                <h1>No hay clientes registrados</h1>
             @else
                 <table>
-                    <thead>
+                    <thead> 
                         <tr>
                             <th></th>
                             <th>Documento</th>
@@ -52,34 +52,32 @@
                             <th>Apellido</th>
                             <th>Email</th>
                             <th>Teléfono</th>
-                            <th>Tipo de Licencia</th>
-                            <th>N° de Licencia</th>
-                            <th>Expiración Licencia</th>
-                            <th>Vencimiento Licencia</th>
-                            <th>Estado</th>
+                            <th>Departamento</th>
+                            <th>Ciudad</th>
+                            <th>Barrio</th>
+                            <th>Direccion</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($drivers as $driver)
+                        @foreach ($customers as $customer)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $driver->document_number }}</td>
-                                <td>{{ $driver->user->name }}</td>
-                                <td>{{ $driver->user->lastname }}</td>
-                                <td>{{ $driver->user->email }}</td>
-                                <td>{{ $driver->phone_number }}</td>
-                                <td>{{ $driver->licenseType->name }}</td>
-                                <td>{{ $driver->license_number }}</td>
-                                <td>{{ $driver->f_exp_license }}</td>
-                                <td>{{ $driver->f_ven_license }}</td>
-                                <td>{{ $driver->statusDriver->name }}</td>
+                                <td>{{ $customer->document_number }}</td>
+                                <td>{{ $customer->user->name }}</td>
+                                <td>{{ $customer->user->lastname }}</td>
+                                <td>{{ $customer->user->email }}</td>
+                                <td>{{ $customer->phone_number }}</td>
+                                <td>{{ $customer->departament->name }}</td>
+                                <td>{{ $customer->city->name }}</td>
+                                <td>{{ $customer->address }}</td>
+                                <td>{{ $customer->neighborhood }}</td>
                                 <td>
                                     <div class="actions">
-                                        <form action="{{ route('drivers.edit', $driver->id) }}" method="GET">
+                                        <form action="{{ route('customers.edit', $customer->id) }}" method="GET">
                                             <button type="submit" class="btn-edit">Editar</button>
                                         </form>
-                                        <form action="{{ route('drivers.destroy', $driver->id) }}" method="POST">
+                                        <form action="{{ route('customers.destroy', $customer->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn-delete"
@@ -94,7 +92,7 @@
             @endif
         </div>
         <div class="add-driver-button">
-            <a href="{{ route('drivers.create') }}" class="btn-add">Agregar Conductor</a>
+            <a href="{{ route('customers.create') }}" class="btn-add">Agregar Cliente</a>
         </div>
     </main>
     <footer>

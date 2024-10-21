@@ -21,7 +21,7 @@
                 </div>
                 <nav>
                     <ul style="display: flex; align-items: center; list-style-type: none; padding: 0;">
-                        <li><a href="{{ route('customers.create') }}">Clientes</a></li>
+                        <li><a href="{{ route('customers.index') }}">Clientes</a></li>
                         <li><a href="{{ route('drivers.index') }}">Conductores</a></li>
                         <li style="margin-right: 30px;"><a href="{{ route('vehicles.create') }}">Vehiculos</a></li>
                         <li style="margin-left: auto;">

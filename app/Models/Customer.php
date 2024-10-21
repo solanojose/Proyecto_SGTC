@@ -19,4 +19,22 @@ class Customer extends Model
         'address',
         'neighborhood',
     ] ;
+
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function documentType(){
+        return $this->belongsTo(DocumentType::class,'id_document_type');
+    }
+
+    public function departament(){
+        return $this->belongsTo(Departament::class,'id_departament');
+    }
+
+    public function city(){
+        return $this->belongsTo(City::class,'id_city');
+    }
+
+    
 }

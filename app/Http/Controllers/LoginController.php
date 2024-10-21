@@ -26,10 +26,13 @@ class LoginController extends Controller
 
             if ($user->hasRole('Administrador')) {
                 return redirect()->route('drivers.index');
-            }elseif ($user->hasRole('Cliente')) {
-                return redirect()->route('customers.profile');
             }
-            
+            if ($user->hasRole('Cliente')) {
+                return redirect()->route('customers.profile')->with('username', $user->name);
+            } 
+            if ($user->hasRole('Conductor')) {
+                return redirect()->route('drivers.profile')->with('username', $user->name);
+            }
         }
 
         return redirect()->back()->withErrors([

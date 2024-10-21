@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href={{ asset('img/LOGO.png') }} type="image/x-icon">
-    <link rel="stylesheet" href="{{ asset('css/viewCustomer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/viewDriver.css') }}">
     <title>Registrar Vehiculo</title>
 </head>
     <body>
@@ -31,7 +31,7 @@
             </div>
         </header>
         <main>
-                <h1>VISTA DEL CLIENTE</h1>
+                <h1>VISTA DEL CONDUCTOR</h1>
                 <h1>Hola, {{ Auth::user()->name }}!</h1>
                 {{-- <h1>Hola, {{ session('username') }}!</h1> --}}
         </main>
