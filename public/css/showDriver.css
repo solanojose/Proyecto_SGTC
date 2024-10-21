@@ -218,7 +218,7 @@ main {
     margin: 0;
     padding: 0;
 
-    /* flex-grow: 1; */
+    flex-grow: 1;
     /* display: flex; */
     justify-content: center;
     align-items: center;
@@ -227,16 +227,18 @@ main {
 
 
 
-.container {
-    width: 90%;
+/* .container {
+    width: 100%;
     max-width: 1200px;
     margin: 50px auto;
     background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    overflow: auto;
-}
+    overflow: hidden; */
+/* } */
+
+
 
 h2 {
     text-align: center;
@@ -245,7 +247,7 @@ h2 {
 }
 
 table {
-    width: 100%;
+    width: 80%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
@@ -283,6 +285,7 @@ button {
     border-radius: 4px;
     cursor: pointer;
     color: #fff;
+    font-weight: bolder;
     
 }
 

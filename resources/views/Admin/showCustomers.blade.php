@@ -43,7 +43,7 @@
             @if ($customers->isEmpty())
                 <h1>No hay clientes registrados</h1>
             @else
-                <table>
+                <center><table>
                     <thead> 
                         <tr>
                             <th></th>

@@ -18,7 +18,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 // ADMIN {
 
 // CONDUCTOR
-// Route::get('/drivers/search', [DriverController::class, 'search'])->name('drivers.search');
+Route::get('/drivers/search', [DriverController::class, 'search'])->name('drivers.search');
 Route::get('/drivers', [DriverController::class, 'index'])->name('drivers.index');
 Route::get('/drivers/{id}/edit', [DriverController::class, 'driverId'])->name('drivers.edit');
 Route::put('/drivers/{id}', [DriverController::class, 'update'])->name('drivers.update'); 

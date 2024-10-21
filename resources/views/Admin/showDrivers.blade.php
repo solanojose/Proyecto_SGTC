@@ -22,7 +22,7 @@
             <nav>
                 <ul style="display: flex; align-items: center; list-style-type: none; padding: 0;">
                     <li><a href="{{ route('customers.index') }}">Clientes</a></li>
-                    <li><a href="{{ route('drivers.create') }}">Conductores</a></li>
+                    <li><a href="{{ route('drivers.index') }}">Conductores</a></li>
                     <li style="margin-right: 30px;"><a href="{{ route('vehicles.create') }}">Vehiculos</a></li>
                     <li style="margin-left: auto;">
                         <form action="{{ route('logout') }}" method="POST" style="margin: 0;"
@@ -38,16 +38,16 @@
         </div>
     </header>
     <main>
-        {{-- <form action="{{ route('drivers.search') }}" method="GET" class="search-form">
+        <form action="{{ route('drivers.search') }}" method="GET" class="search-form">
             <input type="text" name="search" placeholder="Buscar conductor..." value="{{ request('search') }}">
             <button type="submit">Buscar</button>
-        </form> --}}
+        </form>
         <div class="container">
             <h1>Lista de Conductores</h1>
             @if ($drivers->isEmpty())
                 <h1>No hay conductores registrados</h1>
             @else
-                <table>
+                <center><table>
                     <thead>
                         <tr>
                             <th></th>
@@ -60,6 +60,7 @@
                             <th>N° de Licencia</th>
                             <th>Expiración Licencia</th>
                             <th>Vencimiento Licencia</th>
+                            <th>Experiencia</th>
                             <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
@@ -77,6 +78,7 @@
                                 <td>{{ $driver->license_number }}</td>
                                 <td>{{ $driver->f_exp_license }}</td>
                                 <td>{{ $driver->f_ven_license }}</td>
+                                <td>{{ $driver->experiencia }}</td>
                                 <td>{{ $driver->statusDriver->name }}</td>
                                 <td>
                                     <div class="actions">
