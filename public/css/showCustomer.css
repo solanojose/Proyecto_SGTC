@@ -246,16 +246,19 @@ h2 {
 }
 
 table {
-    width: 70%;
+    width: 60%;
+    max-width: 600px;
     border-collapse: collapse;
     margin-bottom: 20px;
+    margin: 20px auto;
 }
 
 th, td {
-    padding: 12px;
+    padding: 9px;
     border: 1px solid #ddd;
     text-align: left;
     word-wrap: break-word;
+    max-width: 100px;
 }
 
 th {
@@ -271,6 +274,7 @@ tr:nth-child(even) {
 tr:hover {
     background-color: #eaeaea;
 }
+
 
 /* .actions {
     display: flex;

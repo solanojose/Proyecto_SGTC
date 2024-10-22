@@ -47,55 +47,54 @@
             @if ($customers->isEmpty())
                 <h1>No hay clientes registrados</h1>
             @else
-                <center>
-                    <table>
-                        <thead>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Documento</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Email</th>
+                            <th>Teléfono</th>
+                            <th>Departamento</th>
+                            <th>Ciudad</th>
+                            <th>Barrio</th>
+                            <th>Direccion</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($customers as $customer)
                             <tr>
-                                <th></th>
-                                <th>Documento</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Email</th>
-                                <th>Teléfono</th>
-                                <th>Departamento</th>
-                                <th>Ciudad</th>
-                                <th>Barrio</th>
-                                <th>Direccion</th>
-                                <th>Acciones</th>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $customer->document_number }}</td>
+                                <td>{{ $customer->user->name }}</td>
+                                <td>{{ $customer->user->lastname }}</td>
+                                <td>{{ $customer->user->email }}</td>
+                                <td>{{ $customer->phone_number }}</td>
+                                <td>{{ $customer->departament->name }}</td>
+                                <td>{{ $customer->city->name }}</td>
+                                <td>{{ $customer->address }}</td>
+                                <td>{{ $customer->neighborhood }}</td>
+                                <td class="actions">
+                                    <form action="{{ route('customers.edit', $customer->id) }}" method="GET">
+                                        <button type="submit" class="btn-edit" title="Editar">
+                                            <img src="{{ asset('img/edittar.png') }}" alt="Editar">
+                                        </button>
+                                    </form>
+                                    <form action="{{ route('customers.destroy', $customer->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn-delete" title="Eliminar"
+                                            onclick="return confirm('¿Estás seguro de que deseas eliminar este cliente?');">
+                                            <img src="{{ asset('img/eliminarr.png') }}" alt="Eliminar">
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($customers as $customer)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $customer->document_number }}</td>
-                                    <td>{{ $customer->user->name }}</td>
-                                    <td>{{ $customer->user->lastname }}</td>
-                                    <td>{{ $customer->user->email }}</td>
-                                    <td>{{ $customer->phone_number }}</td>
-                                    <td>{{ $customer->departament->name }}</td>
-                                    <td>{{ $customer->city->name }}</td>
-                                    <td>{{ $customer->address }}</td>
-                                    <td>{{ $customer->neighborhood }}</td>
-                                    <td class="actions">
-                                        <form action="{{ route('customers.edit', $customer->id) }}" method="GET">
-                                            <button type="submit" class="btn-edit" title="Editar">
-                                                <img src="{{ asset('img/edittar.png') }}" alt="Editar">
-                                            </button>
-                                        </form>
-                                        <form action="{{ route('customers.destroy', $customer->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn-delete" title="Eliminar"
-                                                onclick="return confirm('¿Estás seguro de que deseas eliminar este cliente?');">
-                                                <img src="{{ asset('img/eliminarr.png') }}" alt="Eliminar">
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                        @endforeach
+                    </tbody>
+                </table>
             @endif
         </div>
         <div class="add-driver-button">

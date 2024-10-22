@@ -81,7 +81,7 @@
                                 <td>{{ $driver->license_number }}</td>
                                 <td>{{ $driver->f_exp_license }}</td>
                                 <td>{{ $driver->f_ven_license }}</td>
-                                <td>{{ $driver->experiencia }}</td>
+                                <td>{{ $driver->experiencia}} Año(s)</td>
                                 <td>{{ $driver->statusDriver->name }}</td>
                                 <td class="actions">
                                     <form action="{{ route('drivers.edit', $driver->id) }}" method="GET">

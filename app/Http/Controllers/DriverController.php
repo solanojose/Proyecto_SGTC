@@ -73,8 +73,9 @@ class DriverController extends Controller
         $driver->license_number = $request->license_number;
         $driver->f_exp_license = $request->f_exp_license;
         $driver->f_ven_license = $request->f_ven_license;
-        $experienciaValue = $request->experiencia;
-        $driver->experiencia = $experienciaValue . ' ' . ($experienciaValue == 1 ? 'año' : 'años');
+        // $experienciaValue = $request->experiencia;
+        // $driver->experiencia = $experienciaValue . ' ' . ($experienciaValue == 1 ? 'año' : 'años');
+        $driver->experiencia = $request->experiencia;
         $driver->id_status_drive = $request->id_status_drive;
         $driver->save();
 
@@ -140,8 +141,9 @@ class DriverController extends Controller
         $driver->license_number = $request->license_number;
         $driver->f_exp_license = $request->f_exp_license;
         $driver->f_ven_license = $request->f_ven_license;
-        $experienciaValue = $request->experiencia;
-        $driver->experiencia = $experienciaValue . ' ' . ($experienciaValue == 1 ? 'año' : 'años');
+        // $experienciaValue = $request->experiencia;
+        // $driver->experiencia = $experienciaValue . ' ' . ($experienciaValue == 1 ? 'año' : 'años');
+        $driver->experiencia = $request->experiencia;
         $driver->id_status_drive = $request->id_status_drive;
 
 
