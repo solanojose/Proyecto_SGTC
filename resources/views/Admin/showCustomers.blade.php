@@ -28,7 +28,7 @@
                         <form action="{{ route('logout') }}" method="POST" style="margin: 0;"
                             onsubmit="return confirm('¿Estás seguro de que quieres cerrar sesión?');">
                             @csrf
-                            <button type="submit"
+                            <button type="submit" class="btnCerrarSesion"
                                 style="background:#5085ca; border:none; color:white; cursor:pointer; padding: 10px 15px; border-radius: 5px;">Cerrar
                                 Sesión</button>
                         </form>
@@ -38,57 +38,64 @@
         </div>
     </header>
     <main>
+        <form action="{{ route('drivers.search') }}" method="GET" class="search-form">
+            <input type="text" name="search" placeholder="Buscar cliente..." value="{{ request('search') }}">
+            <button type="submit">Buscar</button>
+        </form>
         <div class="container">
             <h1>Lista de Clientes</h1>
             @if ($customers->isEmpty())
                 <h1>No hay clientes registrados</h1>
             @else
-                <center><table>
-                    <thead> 
-                        <tr>
-                            <th></th>
-                            <th>Documento</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Email</th>
-                            <th>Teléfono</th>
-                            <th>Departamento</th>
-                            <th>Ciudad</th>
-                            <th>Barrio</th>
-                            <th>Direccion</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($customers as $customer)
+                <center>
+                    <table>
+                        <thead>
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $customer->document_number }}</td>
-                                <td>{{ $customer->user->name }}</td>
-                                <td>{{ $customer->user->lastname }}</td>
-                                <td>{{ $customer->user->email }}</td>
-                                <td>{{ $customer->phone_number }}</td>
-                                <td>{{ $customer->departament->name }}</td>
-                                <td>{{ $customer->city->name }}</td>
-                                <td>{{ $customer->address }}</td>
-                                <td>{{ $customer->neighborhood }}</td>
-                                <td>
-                                    <div class="actions">
+                                <th></th>
+                                <th>Documento</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Email</th>
+                                <th>Teléfono</th>
+                                <th>Departamento</th>
+                                <th>Ciudad</th>
+                                <th>Barrio</th>
+                                <th>Direccion</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($customers as $customer)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $customer->document_number }}</td>
+                                    <td>{{ $customer->user->name }}</td>
+                                    <td>{{ $customer->user->lastname }}</td>
+                                    <td>{{ $customer->user->email }}</td>
+                                    <td>{{ $customer->phone_number }}</td>
+                                    <td>{{ $customer->departament->name }}</td>
+                                    <td>{{ $customer->city->name }}</td>
+                                    <td>{{ $customer->address }}</td>
+                                    <td>{{ $customer->neighborhood }}</td>
+                                    <td class="actions">
                                         <form action="{{ route('customers.edit', $customer->id) }}" method="GET">
-                                            <button type="submit" class="btn-edit">Editar</button>
+                                            <button type="submit" class="btn-edit" title="Editar">
+                                                <img src="{{ asset('img/edittar.png') }}" alt="Editar">
+                                            </button>
                                         </form>
                                         <form action="{{ route('customers.destroy', $customer->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn-delete"
-                                                onclick="return confirm('¿Estás seguro de que deseas eliminar este conductor?');">Eliminar</button>
+                                            <button type="submit" class="btn-delete" title="Eliminar"
+                                                onclick="return confirm('¿Estás seguro de que deseas eliminar este cliente?');">
+                                                <img src="{{ asset('img/eliminarr.png') }}" alt="Eliminar">
+                                            </button>
                                         </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
             @endif
         </div>
         <div class="add-driver-button">

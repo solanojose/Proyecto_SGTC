@@ -121,22 +121,23 @@ input::placeholder {
     font-size: 14px; 
 }
 
-button {
-    background-color: #54c5f8;
-    color: white;
+.btnCerrarSesion {
+    background: #5085ca;
     border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
+    color: white;
     cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 5px;
     font-size: 16px;
-    font-weight: bolder;
+    font-weight: bold;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-button:hover {
+.btnCerrarSesion:hover {
     background-color: #3aa3d9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 
 footer {
     background-color: #808080;
@@ -271,7 +272,7 @@ tr:hover {
     background-color: #eaeaea;
 }
 
-.actions {
+/* .actions {
     display: flex;
     gap: 5px;
 }
@@ -302,7 +303,7 @@ button {
 
 .btn-delete:hover {
     background-color: #c82333;
-}
+} */
 
 .add-driver-button {
     margin-top: 20px;
@@ -321,4 +322,66 @@ button {
 
 .btn-add:hover {
     background-color: #45a049;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 500px;
+}
+
+.search-form input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.search-form input:focus {
+    border-color: #54c5f8;
+    outline: none;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    background-color: #54c5f8;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.search-form button:hover {
+    background-color: #3aa3d9;
+    transform: scale(1.05);
+}
+
+.actions {
+    display: flex;
+}
+
+.actions button {
+    background-color: transparent; 
+    border: none; 
+    cursor: pointer; 
+    padding: 5px; 
+    transition: transform 0.3s ease; 
+}
+
+.actions button:hover {
+    transform: scale(1.2); 
+}
+
+.actions img {
+    width: 30px; 
+    height: 30px; 
 }

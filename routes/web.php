@@ -27,6 +27,7 @@ Route::get('/drivers/create', [DriverController::class, 'create'])->name('driver
 Route::post('/drivers', [DriverController::class, 'store'])->name('drivers.store');
 // CLIENTE
 Route::get('/cities/{id}', [CustomerController::class, 'citiesByDepartament']);
+Route::get('/customers/search', [DriverController::class, 'search'])->name('customers.search');
 Route::get('/customers', [CustomerController::class,'index'])->name('customers.index');
 Route::get('/customers/{id}/edit', [CustomerController::class,'customerId'])->name('customers.edit');
 Route::put('/customers/{id}', [CustomerController::class,'update'])->name('customers.update');

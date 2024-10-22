@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href={{ asset('img/LOGO.png') }} type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/showDriver.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMO6k4hOEEgA5Y5jY1B86thl0z1mxhvtrq7C0s" crossorigin="anonymous">
     <title>Conductores</title>
 </head>
 
 <body>
+
     <header>
         <div class="header-content">
             <div class="logo-container">
@@ -28,7 +31,7 @@
                         <form action="{{ route('logout') }}" method="POST" style="margin: 0;"
                             onsubmit="return confirm('¿Estás seguro de que quieres cerrar sesión?');">
                             @csrf
-                            <button type="submit"
+                            <button type="submit" class="btnCerrarSesion"
                                 style="background:#5085ca; border:none; color:white; cursor:pointer; padding: 10px 15px; border-radius: 5px;">Cerrar
                                 Sesión</button>
                         </form>
@@ -47,7 +50,7 @@
             @if ($drivers->isEmpty())
                 <h1>No hay conductores registrados</h1>
             @else
-                <center><table>
+                <table>
                     <thead>
                         <tr>
                             <th></th>
@@ -62,7 +65,7 @@
                             <th>Vencimiento Licencia</th>
                             <th>Experiencia</th>
                             <th>Estado</th>
-                            <th>Acciones</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -80,18 +83,20 @@
                                 <td>{{ $driver->f_ven_license }}</td>
                                 <td>{{ $driver->experiencia }}</td>
                                 <td>{{ $driver->statusDriver->name }}</td>
-                                <td>
-                                    <div class="actions">
-                                        <form action="{{ route('drivers.edit', $driver->id) }}" method="GET">
-                                            <button type="submit" class="btn-edit">Editar</button>
-                                        </form>
-                                        <form action="{{ route('drivers.destroy', $driver->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn-delete"
-                                                onclick="return confirm('¿Estás seguro de que deseas eliminar este conductor?');">Eliminar</button>
-                                        </form>
-                                    </div>
+                                <td class="actions">
+                                    <form action="{{ route('drivers.edit', $driver->id) }}" method="GET">
+                                        <button type="submit" class="btn-edit" title="Editar">
+                                            <img src="{{ asset('img/edittar.png') }}" alt="Editar">
+                                        </button>
+                                    </form>
+                                    <form action="{{ route('drivers.destroy', $driver->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn-delete" title="Eliminar"
+                                            onclick="return confirm('¿Estás seguro de que deseas eliminar este conductor?');">
+                                            <img src="{{ asset('img/eliminarr.png') }}" alt="Eliminar">
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

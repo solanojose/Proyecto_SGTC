@@ -164,4 +164,19 @@ class CustomerController extends Controller
     {
         return view('Customer.viewCustomer');
     }
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('search');
+
+        $customers = Customer::with('user')
+            ->whereHas('user', function ($query) use ($searchTerm) {
+                $query->where('name', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('lastname', 'LIKE', "%{$searchTerm}%");
+            })
+            ->orWhere('document_number', 'LIKE', "%{$searchTerm}%")
+            ->get();
+
+        return view('Admin.showCustomers', compact('customers'));
+    }
 }
